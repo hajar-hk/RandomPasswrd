@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Random Password</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="container">
+            <h1>Generate a <br><span>Random Password</span> </h1>
+            <div class="display">
+                <input type="text" placeholder="password" id="password">
+                <img src="images/image.png" onclick="copierPassword()">
+            </div> 
+            <button onclick="createPassword()"><img src="images/image copy.png">Generate a Password</button>           
+        </div>
+        <script>
+
+            const passwordBox = document.getElementById("password");
+            const lenght = 12;
+            const upperCase = "ABCDEFGHIJKLMNOPQRSTUVWYZ";
+            const lowerCase = "abcdefghijklmnopqrstuvwyz";
+            const number ="0123456789";
+            const symbol = "@#$%^&*()_+|}{[]></-=}";
+            
+            const allChars = upperCase+lowerCase+number+symbol;
+            function createPassword()
+            {
+                let password = "";
+                // math.floor: Elle est utilisée pour convertir le résultat de Math.random() * upperCase.length en un entier, afin de pouvoir l'utiliser comme un indice pour accéder à un caractère dans la chaîne.
+                
+                password +=  upperCase[Math.floor(Math.random()*upperCase.length)];
+                password +=  lowerCase[Math.floor(Math.random()*lowerCase.length)];
+                password +=  number[Math.floor(Math.random()*number.length)];
+                password +=  symbol[Math.floor(Math.random()*symbol.length)];
+
+                while(lenght> password.length)
+                {
+                    password +=  allChars[Math.floor(Math.random()*symbol.length)];
+
+                }
+                passwordBox.value = password;
+            }
+
+            function copierPassword(){
+                passwordBox.select();
+                document.execCommand("copy");
+            }
+
+
+        </script>
+    </body>
+</html>
